@@ -9,7 +9,14 @@ const App = () => {
   const [repos, setRepos] = useState([]);
 
   const search = (term) => {
+    $.ajax({
+      type: 'POST',
+      url: '/repos',
+      data: JSON.stringify(term), //do some json stuff
+      contentType: 'application/json' //define app/json
+    });
     console.log(`${term} was searched`);
+    // console.log('this is term:', term);
   }
 
   return (
