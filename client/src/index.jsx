@@ -9,14 +9,22 @@ const App = () => {
   const [repos, setRepos] = useState([]);
 
   const search = (term) => {
+    var request = {
+      username: term
+    };
+
     $.ajax({
-      type: 'POST',
+      method: 'POST',
       url: '/repos',
-      data: JSON.stringify(term), //do some json stuff
+      data: JSON.stringify(request), //do some json stuff
       contentType: 'application/json' //define app/json
+    }).done(() => {
+      console.log('done');
+    }).fail((error) => {
+      console.error(error);
     });
+
     console.log(`${term} was searched`);
-    // console.log('this is term:', term);
   }
 
   return (
